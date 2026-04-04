@@ -1,52 +1,71 @@
 @import "tailwindcss";
 
-@theme  {
-  --color-white: #ffffff;
-  --color-primary: #8aa8b2;
-  --color-secondary: #b3c8cf;
-  --color-accent: #ff6b35;
-  --color-teal-accent: #4ecdc4;
-  --color-beige: #e5e1da;
-  --color-cream: #f1f0e8;
-  --color-background-light: #f7f7f7;
-  --color-background-dark: #171a1b;
-  --color-text-body: #374151;
-  --font-display: "Plus Jakarta Sans", sans-serif;
+@theme {
+  --radius: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --color-primary: #d48a94;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #eed2d6;
+  --color-secondary-fixed: #fae1e4;
+  --color-on-secondary-fixed: #4d2328;
+  --color-secondary-container: #fae1e4;
+  --color-on-secondary-container: #8c5a61;
+  --color-background: #fcfafb;
+  --color-on-background: #2b2122;
+  --color-surface: #fcfafb;
+  --color-on-surface: #2b2122;
+  --color-surface-variant: #f5eced;
+  --color-on-surface-variant: #5e4f51;
+  --color-surface-container: #f7f1f2;
+  --color-surface-container-low: #faf6f7;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #fdf5f4;
+  --color-outline: #8c7a7c;
+  --color-outline-variant: #d6cacc;
+  --font-headline: "Montserrat", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-label: "Nunito Sans", sans-serif;
 }
 
 @layer base {
   body {
-    font-family: var(--font-display);
-    background-color: var(--color-cream);
-    color: var(--color-text-body);
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Aesthetic / Editorial Detail: Lớp nhiễu hạt (Film Grain) mơ hồ trên toàn trang */
+  html::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
   }
 }
 
 @layer components {
-  .bg-login-gradient {
-    background: linear-gradient(135deg, #89a8b2 0%, #5d727a 100%);
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  .bg-button-gradient {
-    background: linear-gradient(90deg, #89a8b2 0%, #b3c8cf 100%);
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
-  .glass-effect {
-    @apply bg-white/15 backdrop-blur-md border border-white/20;
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-}
-
-input[type="password"]::-ms-reveal,
-input[type="password"]::-ms-clear {
-  display: none;
-}
-
-/* Ẩn scrollbar cho Chrome, Safari và Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-/* Ẩn scrollbar cho IE, Edge và Firefox */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }

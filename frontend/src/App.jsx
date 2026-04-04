@@ -1,9 +1,10 @@
+import AppRoutes from "./routes"
 
 function App() {
 
   return (
     <>
-      App
+      <AppRoutes />
     </>
   )
 }
