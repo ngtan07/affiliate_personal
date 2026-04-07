@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import LeftPinnedCard from './LeftPinnedCard'
 import RightTopPinnedCard from './RightTopPinnedCard'
 import RightBottomPinnedCard from './RightBottomPinnedCard'
+import { createGridVariants, createBlockReveal, createFadeIn } from '../../../utils/animations';
 
 
 const productPinned = [
@@ -40,82 +41,50 @@ const productPinned = [
     }
 ]
 
-const colorPlatform = [
-    {
-        "id": "shopee",
-        "name": "Shopee",
-        "textColor": "#EE4D2D",
-    },
-    {
-        "id": "tiktok",
-        "name": "TikTok",
-        "textColor": "#111111",
-    },
-    {
-        "id": "lazada",
-        "name": "Lazada",
-        "textColor": "#F60F91",
-    },
-]
-
-// --- ANIMATION VARIANTS (Chuyển động tịnh tiến siêu mượt) ---
-const gridVariants = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: { staggerChildren: 0.2, delayChildren: 0.1 }
-    }
-};
-
-const blockReveal = {
-    hidden: { opacity: 0, y: 50, scale: 0.98 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-};
-
-const textFadeUp = {
-    hidden: { opacity: 0, x: -20 },
-    show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-};
 
 const PinnedProduct = () => {
     return (
         <section id="pinned-section" className="mt-16 mb-12">
             <motion.div
-                variants={gridVariants}
+                variants={createGridVariants()}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: false, amount: 0.1 }}
                 className="w-full"
             >
-                <motion.div variants={textFadeUp} className="flex items-center gap-2 mb-6">
+                <motion.div
+                    variants={createFadeIn('right', 20, 0.8)}
+                    className="flex items-center gap-2 mb-6">
                     <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>push_pin</span>
                     <h2 className="text-xl font-bold tracking-tight">Pinned by Alice</h2>
                 </motion.div>
 
-                {/* Khối Grid Card */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch">
 
                     {/* Large Pinned Card */}
-                    <motion.div variants={blockReveal} className="md:col-span-2 md:row-span-2 h-full flex flex-col [&>div]:flex-grow">
+                    <motion.div
+                        variants={createBlockReveal(50, 0.8)}
+                        className="md:col-span-2 md:row-span-2 h-full flex flex-col [&>div]:flex-grow">
                         <LeftPinnedCard
                             product1={productPinned[0]}
-                            colorPlatform={colorPlatform}
                         />
                     </motion.div>
 
                     {/* Small Pinned Card 1 */}
-                    <motion.div variants={blockReveal} className="md:col-span-2 h-full flex flex-col [&>div]:flex-grow">
+                    <motion.div
+                        variants={createBlockReveal(50, 0.8)}
+                        className="md:col-span-2 h-full flex flex-col [&>div]:flex-grow">
                         <RightTopPinnedCard
                             product2={productPinned[1]}
-                            colorPlatform={colorPlatform}
                         />
                     </motion.div>
 
                     {/* Small Pinned Card 2 */}
-                    <motion.div variants={blockReveal} className="md:col-span-2 h-full flex flex-col [&>div]:flex-grow">
+                    <motion.div
+                        variants={createBlockReveal(50, 0.8)}
+                        className="md:col-span-2 h-full flex flex-col [&>div]:flex-grow">
                         <RightBottomPinnedCard
                             product3={productPinned[2]}
-                            colorPlatform={colorPlatform}
                         />
                     </motion.div>
 

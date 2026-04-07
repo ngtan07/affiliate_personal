@@ -1,20 +1,15 @@
-import React from 'react';
-import { useCardActions } from "../../../hooks/useCardActions";
-
-const colorPlatform = [
-    { id: "shopee", name: "Shopee", textColor: "#EE4D2D" },
-    { id: "tiktok", name: "TikTok", textColor: "#111111" },
-    { id: "lazada", name: "Lazada", textColor: "#F60F91" },
-];
+import { useCardActions } from "../../hooks/useCardActions";
+import { PLATFORM_UI_CONFIG } from '../../config/constants';
 
 const ProductCard = ({ p }) => {
     const { handleCardClick, handleCopy, handleShare, isCopied } = useCardActions(p);
-    const platformObj = colorPlatform.find(plat => plat.id === p?.platform?.toLowerCase());
+    const config = PLATFORM_UI_CONFIG[p.platform.toUpperCase()] || { name: p.platform, textColor: '#727975' };
+
 
     return (
         <div
             onClick={handleCardClick}
-            className="group relative overflow-hidden rounded-[1.5rem] bg-surface-container-high border border-outline-variant shadow-sm flex flex-col cursor-pointer hover:border-primary transition-colors h-full"
+            className="group relative overflow-hidden rounded-3xl bg-white border border-outline-variant shadow-sm flex flex-col cursor-pointer hover:border-primary transition-colors h-full"
         >
             <div className="h-56 relative overflow-hidden bg-surface-container shrink-0">
                 <img
@@ -26,11 +21,11 @@ const ProductCard = ({ p }) => {
                 <div
                     className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-[9px] font-bold uppercase tracking-widest shadow-md border"
                     style={{
-                        color: platformObj ? platformObj.textColor : '#3f3f46',
-                        borderColor: platformObj ? `${platformObj.textColor}40` : '#e4e4e7'
+                        color: config.textColor,
+                        borderColor: `${config.textColor}40`
                     }}
                 >
-                    {platformObj ? platformObj.name : p.platform}
+                    {config.name}
                 </div>
             </div>
 
@@ -58,7 +53,7 @@ const ProductCard = ({ p }) => {
                 {/* Card Footer */}
                 <div className="mt-auto flex items-center justify-between gap-3 pt-4 border-t border-outline/10">
                     <div>
-                        <span className="text-[9px] md:text-[10px] text-primary font-bold uppercase tracking-[0.2em]">
+                        <span className="text-[9px] md:text-[10px] text-primary font-bold uppercase tracking-[0.2em] line-clamp-2">
                             {p.categoryName || 'Sản phẩm'}
                         </span>
                     </div>
@@ -66,18 +61,18 @@ const ProductCard = ({ p }) => {
                     <div className="flex items-center justify-end gap-2">
                         <button
                             onClick={handleShare}
-                            title="Chia sẻ"
-                            className="w-8 h-8 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-sm"
+                            title="Share"
+                            className="w-10 h-10 md:w-8 md:h-8 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-sm cursor-pointer flex-shrink-0"
                         >
-                            <span className="material-symbols-outlined text-[15px]">share</span>
+                            <span className="material-symbols-outlined text-[18px] md:text-[15px]">share</span>
                         </button>
 
                         <button
                             onClick={handleCopy}
-                            title="Sao chép link"
-                            className="w-8 h-8 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-sm"
+                            title="Copy"
+                            className="w-10 h-10 md:w-8 md:h-8 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-sm cursor-pointer flex-shrink-0"
                         >
-                            <span className="material-symbols-outlined text-[15px]">{isCopied ? 'check' : 'content_copy'}</span>
+                            <span className="material-symbols-outlined text-[18px] md:text-[15px]">{isCopied ? 'check' : 'content_copy'}</span>
                         </button>
                     </div>
                 </div>

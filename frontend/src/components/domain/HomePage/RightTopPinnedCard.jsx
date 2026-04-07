@@ -1,8 +1,8 @@
-import React from 'react';
 import { useCardActions } from "../../../hooks/useCardActions";
+import { PLATFORM_UI_CONFIG } from '../../../config/constants';
 
-const RightTopPinnedCard = ({ product2, colorPlatform }) => {
-    const platformObj = colorPlatform?.find(p => p.id === product2?.platform?.toLowerCase());
+const RightTopPinnedCard = ({ product2 }) => {
+    const config = PLATFORM_UI_CONFIG[product2.platform.toUpperCase()] || { id: product2.platform.toLowerCase(), name: product2.platform, textColor: '#727975' };
     const { handleCardClick, handleCopy, handleShare, isCopied } = useCardActions(product2);
 
     return (
@@ -28,12 +28,12 @@ const RightTopPinnedCard = ({ product2, colorPlatform }) => {
                                 <span
                                     className="text-[8px] md:text-[9px] px-2 py-0.5 rounded-sm font-bold uppercase tracking-widest border"
                                     style={{
-                                        borderColor: platformObj ? platformObj.textColor : '#ccc',
-                                        color: platformObj ? platformObj.textColor : '#666',
+                                        borderColor: config.textColor,
+                                        color: config.textColor,
                                         backgroundColor: 'transparent'
                                     }}
                                 >
-                                    {platformObj ? platformObj.name : product2?.platform}
+                                    {config.name}
                                 </span>
                                 <span className="text-[10px] text-outline hidden sm:inline-block">•</span>
                                 <span className="text-[8px] md:text-[9px] font-semibold tracking-[0.2em] text-primary uppercase hidden sm:inline-block">
@@ -41,7 +41,6 @@ const RightTopPinnedCard = ({ product2, colorPlatform }) => {
                                 </span>
                             </div>
 
-                            {/* Tên sản phẩm dùng hệ font gốc để tránh lỗi dấu */}
                             <h3 className="text-lg md:text-xl font-medium tracking-tight leading-snug text-on-surface line-clamp-2">
                                 {product2?.productName}
                             </h3>
@@ -63,17 +62,17 @@ const RightTopPinnedCard = ({ product2, colorPlatform }) => {
                         <button
                             onClick={handleShare}
                             title="Chia sẻ"
-                            className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md"
+                            className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer flex-shrink-0"
                         >
-                            <span className="material-symbols-outlined text-[15px] md:text-[17px]">share</span>
+                            <span className="material-symbols-outlined text-[18px] md:text-[17px]">share</span>
                         </button>
 
                         <button
                             onClick={handleCopy}
                             title="Sao chép link"
-                            className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md"
+                            className="w-10 h-10 md:w-9 md:h-9 rounded-full bg-primary/10 backdrop-blur-sm text-primary flex items-center justify-center border border-primary/10 hover:bg-primary hover:text-white hover:border-transparent transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer flex-shrink-0"
                         >
-                            <span className="material-symbols-outlined text-[15px] md:text-[17px]">{isCopied ? 'check' : 'content_copy'}</span>
+                            <span className="material-symbols-outlined text-[18px] md:text-[17px]">{isCopied ? 'check' : 'content_copy'}</span>
                         </button>
                     </div>
                 </div>
