@@ -518,9 +518,7 @@ const TemplatesPage = () => {
                 </motion.div>
 
                 {/* Search */}
-                <motion.div variants={createFadeIn('up', 16, 0.65)}>
-                    <SearchSection />
-                </motion.div>
+                <SearchSection />
 
                 {/* Tag Pills — multi-select, animate as one block */}
                 <motion.div
