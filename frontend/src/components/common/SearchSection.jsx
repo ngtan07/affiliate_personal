@@ -60,7 +60,7 @@ const SearchSection = () => {
             <div className="relative max-w-2xl mx-auto w-full">
                 <input
                     className="w-full pl-12 pr-4 py-3 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline outline-none"
-                    placeholder="Search products..."
+                    placeholder="Tìm kiếm ..."
                     type="text"
                 />
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>

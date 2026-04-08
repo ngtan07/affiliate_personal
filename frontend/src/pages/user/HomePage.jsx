@@ -1,10 +1,10 @@
 import Instruction from '../../components/domain/HomePage/Instruction'
-import SearchSection from '../../components/domain/HomePage/SearchSection'
+import SearchSection from '../../components/common/SearchSection'
 import PinnedProduct from '../../components/domain/HomePage/PinnedProduct'
 import Products from '../../components/domain/HomePage/Products'
 import UserLayout from '../../components/layout/UserLayout'
 import Templates from '../../components/domain/HomePage/Templates'
-import { Link } from 'react-router-dom'
+
 
 
 const products = [
@@ -140,7 +140,11 @@ const HomePage = () => {
 
             <Instruction />
             <PinnedProduct />
-            <SearchSection />
+
+            <div className="flex w-full justify-end mb-3">
+                <SearchSection />
+            </div>
+
             <Templates />
 
             <Products products={products} />

@@ -55,25 +55,10 @@ const productsCategory = [
 ];
 
 
-const ProductDetail = () => {
-
-    const message = <>Xem thêm nhiều đồ xinh iu nữa 👉
-        <span className="inline-grid text-center">
-            <Link
-                to='/'
-                className="col-start-1 row-start-1 underline decoration-primary decoration-1 underline-offset-4 hover:font-bold transition-all"
-            >
-                ở đây
-            </Link>
-
-            <span className="col-start-1 row-start-1 font-bold invisible pointer-events-none">
-                ở đây
-            </span>
-        </span>
-        {' '}nè</>
+const ProductDetailPage = () => {
 
     return (
-        <UserLayout message={message}>
+        <UserLayout >
             <motion.div
                 variants={createGridVariants(0.15)}
                 initial="hidden"
@@ -103,4 +88,4 @@ const ProductDetail = () => {
     );
 };
 
-export default ProductDetail;
+export default ProductDetailPage;
